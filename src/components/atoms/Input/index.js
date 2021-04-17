@@ -12,14 +12,16 @@ const App = ({label, placeholder, ...rest}) => {
 
 export default App;
 
+
 const styles = StyleSheet.create({
   labelInput: {
     fontSize: 14,
-  },
+    marginEnd: 10,
+  },  
   input: {
     borderWidth: 1,
     borderColor: '#C5C5C5',
     borderRadius: 10,
     marginBottom: 8,
   },
-})
+});

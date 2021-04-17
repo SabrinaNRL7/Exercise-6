@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import {StyleSheet, Text, View,Image, ScrollView} from 'react-native';
 import Axios from 'axios';
 import UsersListAPI from '../../molecules/UserList';
 
@@ -7,25 +7,21 @@ const UserListPage = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    //axios
-    Axios.get('https://jsonplaceholder.typicode.com/users').then(result => {
+    Axios.get('http://10.0.2.2:3004/users').then(result => {
       setUsers(result.data);
     });
-  }, []);
+  }, [users]);
 
-  console.log(users);
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Users List</Text>
         {users.map(item => (
           <UsersListAPI
-            key={item.id}
-            name={item.name}
-            userName={item.username}
-            email={item.email}
-            address={`${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}`}
-            phone={item.phone}
+          key={item.id}
+          avatar={item.avatar}
+          fullName={`${item.first_name} ${item.last_name}`}
+          email={item.email}
           />
         ))}
       </ScrollView>

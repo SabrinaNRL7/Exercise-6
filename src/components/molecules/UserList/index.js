@@ -1,23 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 
-const UserList = ({name, userName, email, address, phone}) => {
+const UserList = ({email, avatar, fullName}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.listData}>
-        Nama :<Text style={styles.normal}> {name}</Text>
-      </Text>
-      <Text style={styles.listData}>
-        Username :<Text style={styles.normal}> {userName}</Text>
-      </Text>
+      <Image style={styles.avatar} source={{uri: `${avatar}`}} />
       <Text style={styles.listData}>
         Email :<Text style={styles.normal}> {email}</Text>
       </Text>
       <Text style={styles.listData}>
-        Address :<Text style={styles.normal}> {address}</Text>
-      </Text>
-      <Text style={styles.listData}>
-        Phone :<Text style={styles.normal}> {phone}</Text>
+        Full Name :<Text style={styles.normal}> {fullName}</Text>
       </Text>
     </View>
   );
@@ -40,11 +32,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   listData: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   normal: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'normal',
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 80,
   },
 });

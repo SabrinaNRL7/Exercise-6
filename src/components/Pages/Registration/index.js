@@ -3,63 +3,53 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Input from '../../atoms/Input';
 import Gap from '../../atoms/Gap';
 import Button from '../../atoms/Button';
+import Axios from 'axios';
 
 const App = () => {
-  const [namaLengkap, setNamaLengkap] = useState('');
-  const [userName, setUsername] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSubmit = () => {
     const data = {
-      namaLengkap: namaLengkap,
-      userName: userName,
+      first_name: first_name,
+      last_name: last_name,
       email: email,
-      address: address,
-      phoneNumber: phoneNumber,
+      avatar: 'https://source.unsplash.com/user/erondu',
     };
-    console.log(data);
+    Axios.post('http://10.0.2.2:3004/users', data);
   };
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+
         <Text style={styles.registration}>Registration</Text>
         <Gap height={40} />
-        <Text style={styles.labelInput}>Name</Text>
+
+        <Text style={styles.labelInput}>First Name</Text>
         <Input
-          value={namaLengkap}
-          placeholder="Masukan nama lengkap anda"
-          onChangeText={e => setNamaLengkap(e)}
+          value={first_name}
+          placeholder="Input Your First Name"
+          onChangeText={e => setFirstName(e)}
         />
-        <Text style={styles.labelInput}>Username</Text>
+
+        <Text style={styles.labelInput}>Last Name</Text>
         <Input
-          value={userName}
-          placeholder="Masukan username anda"
-          onChangeText={e => setUsername(e)}
+          value={last_name}
+          placeholder="Input Your Last Name"
+          onChangeText={e => setLastName(e)}
         />
+
         <Text style={styles.labelInput}>Email</Text>
+
         <Input
           value={email}
-          placeholder="Masukan email anda"
-          onChangeText={e => setEmail(e)}
-        />
-        <Text style={styles.labelInput}>Address</Text>
-        <Input
-          value={address}
-          placeholder="Masukan alamat anda"
-          onChangeText={e => setAddress(e)}
-        />
-        <Text style={styles.labelInput}>Phone Number</Text>
-        <Input
-          value={phoneNumber}
-          keyboardType="numeric"
-          placeholder="Masukan Nomor telepon anda"
-          onChangeText={e => setPhoneNumber(e)}
-        />
+          placeholder="Input Your Email"
+          onChangeText={e => setEmail(e)}/>
         <Gap height={20} />
-        <Button label="Register" onSbumit={() => handleSubmit()} />
+        
+        <Button label="Save" onSubmit={() => handleSubmit()} />
       </ScrollView>
     </View>
   );
